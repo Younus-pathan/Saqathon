@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Document</title>
+<style>
+   h1{text-align:center;}    
+
+
+
+
+   body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+   }
+   .result {
+      font-size: 20px;
+      font-weight: 350;
+      color: blue;
+   }
+   button {
+      background-color:light blue;
+      border-radius:35px;
+      padding: 9px;
+      margin: 20px;
+   }
+</style>
+</head>
+<body style="background-color:orange;">
+
+
+<h1>SAQATHON-2022</h1>
+<h2>Basic Stack operations</h2>
+<div class="result"></div>
+<h3><label>Input:</label>
+<input type="text" class="stackPush"/><button class="pushBtn">PUSH</button>
+<button class="popBtn">POP</button>
+<button class="Btn">DISPLAY</button>
+<h2>Developed by:</h2>
+<h3>YOUNUS KHAN & TARUN G</h3>
+<script>
+   let resEle = document.querySelector(".result");
+   let BtnEle = document.querySelector(".Btn");
+   let pushBtnEle = document.querySelector(".pushBtn");
+   let popBtnEle = document.querySelector(".popBtn");
+   class Stack {
+      constructor() {
+         this.items = [];
+         this.top = 0;
+      }
+   }
+
+
+   Stack.prototype.push = function (ele) {
+       
+      this.items[this.top] = ele;
+      this.top += 1;
+   };
+   Stack.prototype.pop = function () {
+      if (this.top === 0) {
+         return "Underflow: no more elements to delete";
+      }
+      tempNum = this.items[this.top - 1];
+      this.items.length -= 1;
+      return tempNum;
+   };
+   Stack.prototype.display = function () {
+      if (this.top == 0) {
+         return "Stack is empty";
+      }
+      for (let i = 0; i < this.top; i++) {
+         resEle.innerHTML += this.items[i] + " , ";
+      }
+   };
+   let stack1 = new Stack();
+   BtnEle.addEventListener("click", () => {
+      resEle.innerHTML = "";
+      stack1.display();
+   });
+   pushBtnEle.addEventListener("click", () => {
+      let ele = document.querySelector(".stackPush").value;
+      resEle.innerHTML = ele + " is pushed to the stack";
+      stack1.push(ele);
+   });
+   popBtnEle.addEventListener("click", () => {
+      resEle.innerHTML = stack1.pop() + " is popped from the stack";
+   });
+</script>
+</body>
+</html>
